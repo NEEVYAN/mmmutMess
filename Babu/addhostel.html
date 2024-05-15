@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="addhostel.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+
+</head>
+<body>
+
+    
+<div class="wrapper">
+    <form action="">
+        <div id="wizard">
+            <!-- SECTION 1 -->
+            <h2 class="heading">Register New Hostel</h2>
+            <section>
+                <div class="form-row"> <input type="text" class="form-control" id="hostelName" placeholder="Hostel Name"> </div>
+                <div class="form-row"> <input type="text" class="form-control" id="wardenName" placeholder="Hostel Warden"> </div>
+                <div class="form-row"> <input type="text" class="form-control" id="wardenPhone" placeholder="Hostel Warden Phone"> </div>
+                <div class="form-row"> <input type="text" class="form-control" id="messManager" placeholder="Mess Manager"> </div>
+                <div class="form-row"> <input type="password" class="form-control" id="hostelPassword" placeholder="Hostel Password"> </div>
+                <div class="form-row"> <input type="file" id="hostelImage" accept="image/*"> </div> 
+            </section>
+             <!-- SECTION 2 -->
+            <div class="col-12">
+                <div class="d-grid">
+                  <button class="btn btn-primary btn-lg" type="button" onclick="submitForm()">Register</button>
+                </div>
+              </div>
+        </div>
+    </form>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+    <script src="../fireConfig.js"></script> 
+    <script src="addhostel.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/bs-brain@2.0.3/components/logins/login-10/assets/css/login-10.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@500&family=Vollkorn:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+  <script src="https://kit.fontawesome.com/a198e75b8b.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Poppins:wght@200;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <script
+    src="https://kit.fontawesome.com/a198e75b8b.js"
+    crossorigin="anonymous"
+  ></script>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-light bg-light">
+        <div class="p-3 container">
+          <a class="navbar-brand" href="#">
+            <img
+              src="images/logommmut.png"
+              width="30"
+              height="30"
+              class="d-inline-block align-top"
+              alt=""
+            />
+            Welcome, Admin
+          </a>
+        </div>
+      </nav>
+  
+
+
+    <h2 class="sub mt-5" style="text-align: center">hostel name</h2>
+
+    <div class="mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="input-group mb-3">
+            <input
+              type="date"
+              id="searchDate"
+              style="height: 60px"
+              class="form-control"
+              placeholder="Search by Date"
+            />
+            <button class="btn btn-primary" onclick="searchByDate()">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="allhostels p-5"></div>
+  </body>
+
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+  <script src="../fireConfig.js"></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+
+  <script>
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return "";
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    // Get the hostelName query parameter
+    var hostelName = getParameterByName("hostelName");
+    if (hostelName) {
+      console.log("Hostel Name:", hostelName);
+      document.querySelector(".sub").innerHTML = hostelName;
+    }
+
+
+
+
+
+
+    // ========================================== 
+    // function searchByDate() {
+    //   var searchDate = document.getElementById("searchDate").value;
+    //   retrieveAndDisplayData(searchDate);
+    // }
+
+
+    function searchByDate() {
+        var searchDate = document.getElementById("searchDate").value;
+        var dateParts = searchDate.split("-");
+        if (dateParts.length === 3) {
+            var searchDateFormatted = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+            console.log(searchDateFormatted);
+            retrieveAndDisplayData(searchDateFormatted);
+        } else {
+            alert("Please enter a date in the format DD-MM-YYYY.");
+        }
+      }
+
+
+
+
+
+
+
+
+
+
+    // function retrieveAndDisplayData(searchDate = null) {
+    //   var database = firebase.database();
+    //   var hostelName = getParameterByName("hostelName");
+
+    //   var allHostels = document.querySelector(".allhostels");
+    //   if (!allHostels) {
+    //     console.error("Element with class 'allhostels' not found.");
+    //     return;
+    //   }
+
+    //   if (hostelName) {
+    //     var foodDataRef = database.ref("hostels/" + hostelName + "/fooddata");
+
+    //     if (searchDate) {
+    //       foodDataRef
+    //         .orderByChild("date")
+    //         .equalTo(searchDate)
+    //         .once("value", function (snapshot) {
+    //           clearData();
+    //           var dataArray = [];
+    //           snapshot.forEach(function (childSnapshot) {
+    //             var data = childSnapshot.val();
+    //             // displayData(data);
+    //             dataArray.push(data);
+    //           });
+    //           displayDataInReverseOrder(dataArray);
+    //         });
+    //     } else {
+    //       foodDataRef
+    //       .orderByChild("date")
+    //       .once("value", function (snapshot) {
+    //         clearData();
+    //         var dataArray = [];
+    //         snapshot.forEach(function (childSnapshot) {
+    //           var data = childSnapshot.val();
+    //           dataArray.push(data);
+    //         });
+    //         displayDataInReverseOrder(dataArray);
+    //       });
+    //     }
+    //   }
+    // }
+
+
+    
+    function retrieveAndDisplayData(searchDate = null) {
+        var database = firebase.database();
+        var hostelName = getParameterByName("hostelName");
+
+        var allHostels = document.querySelector(".allhostels");
+        if (!allHostels) {
+          console.error("Element with class 'allhostels' not found.");
+          return;
+        }
+
+        if (hostelName) {
+          var foodDataRef = database.ref("hostels/" + hostelName + "/fooddata");
+
+          if (searchDate) {
+
+            foodDataRef
+              .orderByKey()
+              .equalTo(searchDate)
+              .once("value", function (snapshot) {
+                clearData();
+                snapshot.forEach(function (childSnapshot) {
+                  var data = childSnapshot.val();
+                  displayData(data,searchDate);
+                });
+              });
+          } else 
+          {
+
+        
+
+
+            foodDataRef.on("value", function (snapshot) {
+                clearData();
+                snapshot.forEach(function (dateSnapshot) {
+                    var date = dateSnapshot.key;
+                    var data = dateSnapshot.val();
+                    displayData(data, date);
+                });
+            });
+
+            
+            
+          }
+        }
+      }
+
+
+
+
+      function displayData(data,date) {
+       
+       var breakfast = data.breakfastInputs;
+       var lunch = data.LunchInputs;
+       var snacks = data.SnacksInputs;
+       var dinner = data.DinnerInputs;
+     
+
+       var hostelCard = document.createElement("div");
+       hostelCard.classList.add("card");
+       hostelCard.classList.add("m-4");
+       hostelCard.innerHTML = `
+         <div class="p-4">
+           <h5 class="card-title mb-4" style="color:blue">${date}</h5>
+           <style>
+             .table th {
+               width: 25%;
+               word-wrap: break-word;
+             
+           }
+           .table td {
+             max-width: 150px;
+             overflow: hidden;
+             text-overflow: ellipsis;
+             word-wrap: break-word;
+           }
+
+
+           </style>
+           <table class="table">
+             <thead>
+               <tr>
+                 <th scope="col">Breakfast</th>
+                 <th scope="col">Lunch</th>
+                 <th scope="col">Snacks</th>
+                 <th scope="col">Dinner</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr>
+                 <td>${breakfast}</td>
+                 <td>${lunch}</td>
+                 <td>${snacks}</td>
+                 <td>${dinner}</td>
+               </tr>
+             </tbody>
+           </table>
+
+
+        <button class="btn btn-lg" type="submit" style="color:#ffffff;background:#000" >Delete</button>
+       <button class="btn btn-primary btn-lg" type="submit">Edit</button>
+
+         </div>
+       `;
+       var allHostels =  document.querySelector(".allhostels");
+       allHostels.insertBefore(hostelCard, allHostels.firstChild);
+     }
+
+   
+
+
+
+
+
+
+
+//     function displayDataInReverseOrder(dataArray) {
+//             dataArray.reverse();
+//             dataArray.forEach(function (data) {
+//                 displayData(data);
+//             });
+//         }
+
+//     function displayData(data) {
+//       var date = data.date;
+//       var breakfast = data.breakfast;
+//       var lunch = data.lunch;
+//       var snacks = data.snacks;
+//       var dinner = data.dinner;
+
+//       var hostelCard = document.createElement("div");
+//       hostelCard.classList.add("card");
+//       hostelCard.classList.add("m-4");
+//       hostelCard.innerHTML = `
+//   <div class="p-4">
+//     <h5 class="card-title mb-4" style="color:blue">${date}</h5>
+//     <style>
+//       .table th {
+//         width: 25%;
+//         word-wrap: break-word;
+      
+//     }
+//     .table td {
+//       max-width: 150px;
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//       word-wrap: break-word;
+//     }
+
+
+//     </style>
+//     <table class="table">
+//       <thead>
+//         <tr>
+//           <th scope="col">Breakfast</th>
+//           <th scope="col">Lunch</th>
+//           <th scope="col">Snacks</th>
+//           <th scope="col">Dinner</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         <tr>
+//           <td>${breakfast}</td>
+//           <td>${lunch}</td>
+//           <td>${snacks}</td>
+//           <td>${dinner}</td>
+//         </tr>
+//       </tbody>
+//     </table>
+
+
+//     <button class="btn btn-lg" type="submit" style="color:#ffffff;background:#000" >Delete</button>
+//     <button class="btn btn-primary btn-lg" type="submit">Edit</button>
+
+    
+//   </div>
+// `;
+//       document.querySelector(".allhostels").appendChild(hostelCard);
+//     }
+
+
+
+
+
+
+    // Function to clear existing data
+
+
+
+
+
+    function clearData() {
+      var cards = document.querySelectorAll(".card");
+      cards.forEach(function (card) {
+        card.remove();
+      });
+    }
+
+    retrieveAndDisplayData();
+
+
+    // ======================================= 
+  </script>
+</html>

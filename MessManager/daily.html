@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bs-brain@2.0.3/components/logins/login-10/assets/css/login-10.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@500&family=Vollkorn:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://kit.fontawesome.com/a198e75b8b.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Poppins:wght@200;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a198e75b8b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <div class="p-3 container">
+        <a class="navbar-brand" href="#">
+          <img
+            src="images/logommmut.png"
+            width="30"
+            height="30"
+            class="d-inline-block align-top"
+            alt=""
+          />
+          Welcome, Mess Manager
+        </a>
+      </div>
+    </nav>
+
+    <h1 class="heading mt-2" style="text-align: center">daily routine</h1>
+    <h2 class="sub" style="text-align: center">hostel name</h2>
+
+    <form id="mealForm">
+      <div class="accordion p-5" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Breakfast
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <form id="breakfastForm" data-meal-type="breakfast">
+
+                <div id="breakfastInputs">
+            
+                </div>
+                <button
+                  class="btn btn-primary mt-2"
+                  onclick="addInput('breakfastInputs',event)"
+                >
+                  Add Meal
+                </button>
+
+              </form>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              Lunch
+            </button>
+          </h2>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+
+              <form id="lunchForm" data-meal-type="lunch">
+
+              <div id="LunchInputs">
+                
+              </div>
+              <button
+                class="btn btn-primary mt-2"
+                onclick="addInput('LunchInputs',event)"
+              >
+                Add Meal
+              </button>
+
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              Snacks
+            </button>
+          </h2>
+          <div
+            id="collapseThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingThree"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div id="SnacksInputs">
+                <!-- Inputs will be added dynamically here -->
+              </div>
+              <button
+                class="btn btn-primary mt-2"
+                onclick="addInput('SnacksInputs',event)"
+              >
+                Add Meal
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFour"
+              aria-expanded="false"
+              aria-controls="collapseFour"
+            >
+              Dinner
+            </button>
+          </h2>
+          <div
+            id="collapseFour"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingFour"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div id="DinnerInputs">
+                <!-- Inputs will be added dynamically here -->
+              </div>
+              <button
+                class="btn btn-primary mt-2"
+                onclick="addInput('DinnerInputs',event)"
+              >
+                Add Meal
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <center>
+          <button
+            type="submit"
+            id="submitBreak"
+            class="btn btn-primary mt-3"
+            style="text-align: center"
+          >
+            Submit Breakfast
+          </button>
+
+          <button
+            type="submit"
+            id="submitLunch"
+            class="btn btn-dark mt-3"
+            style="text-align: center"
+          >
+            Submit Lunch
+          </button>
+
+          <button
+            type="submit"
+            id="submitSnacks"
+            class="btn btn-danger mt-3"
+            style="text-align: center"
+          >
+            Submit Snacks
+          </button>
+
+          <button
+            id="submitDinner"
+            type="submit"
+            class="btn btn-secondary mt-3"
+            style="text-align: center"
+          >
+            Submit Dinner
+          </button>
+        </center>
+      </div>
+    </form>
+
+    <form class="p-5 form2">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Supplier Name</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="number">Supplier Number</label>
+            <input type="number" class="form-control" id="number" >
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4 my-2">
+        <label for="itemname">Item Bought</label>
+        <select id="itemname" class="form-control">
+          <option selected>Choose...</option>
+          <option value="Milk">Milk</option>
+              <option value="Bread">Bread</option>
+              <option value="Butter">Butter</option>
+              <option value="Jam">Jam</option>
+              <option value="Tomato Sauce">Tomato Sauce</option>
+              <option value="Chilli Sauce">Chilli Sauce</option>
+              <option value="Tea/Tea Bags">Tea/Tea Bags</option>
+              <option value="Coffee">Coffee</option>
+              <option value="Refined Vegetable Oil">Refined Vegetable Oil</option>
+              <option value="Vanaspati Ghee">Vanaspati Ghee</option>
+              <option value="Mustard Oil">Mustard Oil</option>
+              <option value="Rice">Rice</option>
+              <option value="Sugar">Sugar</option>
+              <option value="Besan">Besan</option>
+              <option value="Pulses">Pulses</option>
+              <option value="Spices">Spices</option>
+              <option value="Fruits/Vegetables">Fruits/Vegetables</option>
+              <option value="Salad">Salad</option>
+              <option value="Ice Cream">Ice Cream</option>
+              <option value="Salt">Salt</option>
+              <option value="Aata (Whole Wheat)">Aata (Whole Wheat)</option>
+              <option value="Suji & Maida">Suji & Maida</option>
+        </select>
+      </div>
+      <div class="form-group my-2">
+        <label for="quantity">Quantity</label>
+        <input type="text" class="form-control" id="quantity">
+      </div>
+      <div class="form-group col-md-4 my-2">
+        <label for="unit">Unit</label>
+        <select id="unit" class="form-control">
+          <option selected>...</option>
+          <option value="Kg">Kg</option>
+          <option value="Liter">Liter</option>
+          <option value="Gram">Gram</option>
+          <option value="Ton">Ton</option>
+          <option value="Milligram">Milligram</option>
+          <option value="Carat">Carat</option>
+          <option value="Per Pieces">Per Pieces</option>
+          <option value="Per Cup">Per Cup</option>
+          <option value="Pound">Pound</option>
+          <option value="Other Unit">Other Unit</option>
+         
+        </select>
+      </div>
+       
+        <div class="form-group col-md-2 my-2">
+          <label for="price">Price (In Rs.)</label>
+          <input type="text" class="form-control" id="price">
+        </div>
+      </div>
+      <center><button type="submit" class="btn btn-primary m-2">UPDATE NEW ITEM</button></center>
+    </form>
+
+    <h3 class="heading mt-2" style="text-align: center">check data</h3>
+
+    <h3 class="heading mt-2" style="text-align: center">Search by Date</h3>
+
+    <div class="mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="input-group mb-3">
+            <input
+              type="date"
+              id="searchDate"
+              style="height: 60px"
+              class="form-control"
+              placeholder="Search by Date"
+            />
+            <button class="btn btn-primary" onclick="searchByDate()">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="allhostels p-5"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+    <script src="../fireConfig.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function addInput(containerId, event) {
+        event.preventDefault();
+        var container = document.getElementById(containerId);
+        var mealNumber = container.querySelectorAll(".meal").length + 1;
+
+        var dropdown = document.createElement("select");
+        dropdown.classList.add("form-select", "mb-2", "meal");
+        dropdown.innerHTML = `
+              <option value="Milk">Milk</option>
+              <option value="Bread">Bread</option>
+              <option value="Butter">Butter</option>
+              <option value="Jam">Jam</option>
+              <option value="Tomato Sauce">Tomato Sauce</option>
+              <option value="Chilli Sauce">Chilli Sauce</option>
+              <option value="Tea/Tea Bags">Tea/Tea Bags</option>
+              <option value="Coffee">Coffee</option>
+              <option value="Refined Vegetable Oil">Refined Vegetable Oil</option>
+              <option value="Vanaspati Ghee">Vanaspati Ghee</option>
+              <option value="Mustard Oil">Mustard Oil</option>
+              <option value="Rice">Rice</option>
+              <option value="Sugar">Sugar</option>
+              <option value="Besan">Besan</option>
+              <option value="Pulses">Pulses</option>
+              <option value="Spices">Spices</option>
+              <option value="Fruits/Vegetables">Fruits/Vegetables</option>
+              <option value="Salad">Salad</option>
+              <option value="Ice Cream">Ice Cream</option>
+              <option value="Salt">Salt</option>
+              <option value="Aata (Whole Wheat)">Aata (Whole Wheat)</option>
+              <option value="Suji & Maida">Suji & Maida</option>
+              <!-- Add more options as needed -->
+          `;
+
+        var inputField = document.createElement("textarea");
+        inputField.classList.add("form-control", "mb-2", "meal");
+        inputField.setAttribute("rows", "1");
+        inputField.setAttribute("placeholder", "Enter Qunatity of Meal");
+
+        var dropdown2 = document.createElement("select");
+        dropdown2.classList.add("form-select", "mb-2", "meal");
+        dropdown2.innerHTML = `
+            <option value="Kg">Kg</option>
+            <option value="Liter">Liter</option>
+            <option value="Gram">Gram</option>
+            <option value="Ton">Ton</option>
+            <option value="Milligram">Milligram</option>
+            <option value="Carat">Carat</option>
+            <option value="Per Pieces">Per Pieces</option>
+            <option value="Per Cup">Per Cup</option>
+            <option value="Pound">Pound</option>
+            <option value="Other Unit">Other Unit</option>
+            <!-- Add more options as needed -->
+        `;
+
+        var removeButton = document.createElement("button");
+        removeButton.classList.add("btn", "btn-danger", "mb-2");
+        removeButton.textContent = "Remove Meal";
+        removeButton.addEventListener("click", function () {
+          container.removeChild(dropdown);
+          container.removeChild(inputField);
+          container.removeChild(dropdown2);
+          container.removeChild(removeButton);
+        });
+
+        container.appendChild(dropdown);
+        container.appendChild(inputField);
+        container.appendChild(dropdown2);
+        container.appendChild(removeButton);
+      }
+
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+  
+      var hostelName = getParameterByName("hostelName");
+      if (hostelName) {
+        console.log("Hostel Name:", hostelName);
+        document.querySelector(".sub").innerHTML = hostelName;
+      }
+
+
+
+
+
+      document
+        .getElementById("submitBreak")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          submitMealData("breakfastInputs");
+        });
+
+
+
+
+      document
+        .getElementById("submitLunch")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          submitMealData("LunchInputs");
+        });
+
+      document
+        .getElementById("submitSnacks")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          submitMealData("SnacksInputs");
+        });
+
+      document
+        .getElementById("submitDinner")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          submitMealData("DinnerInputs");
+        });
+
+      function submitMealData(mealType) {
+        var mealData = collectMealData(mealType);
+        var hostelName = getParameterByName("hostelName");
+
+        var todayDate = new Date().toISOString().split('T')[0];
+
+
+
+        var todayDateISO2 = new Date().toISOString().split('T')[0];
+        var dateParts2 = todayDateISO2.split('-');
+        var year2 = dateParts2[0];
+        var month2 = dateParts2[1];
+        var day2 = dateParts2[2];
+        var todayDate3 = day2 + "-" + month2 + "-" + year2;
+
+
+
+      
+        if (hostelName) {
+          var database = firebase.database();
+        
+          database
+            .ref(
+              "hostels/" +
+                hostelName +
+                "/fooddata/" +
+                todayDate3 +
+                "/" +
+                mealType
+            )
+            .set(mealData)
+            .then(function () {
+              alert("Data submitted successfully!");
+              document.getElementById(mealType).innerHTML = "";
+            })
+            .catch(function (error) {
+              console.error("Error writing document: ", error);
+              alert("An error occurred. Please try again later.");
+            });
+        }
+      }
+
+
+
+
+
+    // ========================================
+
+    
+
+
+    function uploadData() {
+    var supplierName = document.getElementById('name').value;
+    var supplierNumber = document.getElementById('number').value;
+    var itemBought = document.getElementById('itemname').value;
+    var quantity = document.getElementById('quantity').value;
+    var unit = document.getElementById('unit').value;
+    var price = document.getElementById('price').value;
+
+
+    var todayDateISO = new Date().toISOString().split('T')[0];
+    var dateParts = todayDateISO.split('-');
+    var year = dateParts[0];
+    var month = dateParts[1];
+    var day = dateParts[2];
+    var todayDate2 = day + "-" + month + "-" + year;
+
+
+
+    var currentDate = new Date().toISOString();
+
+    var hostelName = getParameterByName("hostelName");
+    
+    firebase.database().ref("hostels/"+hostelName+"/supplylist/").push({
+      supplierName: supplierName,
+      supplierNumber: supplierNumber,
+      itemBought: itemBought,
+      quantity: quantity,
+      unit: unit,
+      price: price,
+      currentDate: todayDate2
+    })
+    .then(function () {
+              alert("Data submitted successfully!");
+              document.getElementById(mealType).innerHTML = "";
+            });
+
+    
+    document.getElementById('name').value = '';
+    document.getElementById('number').value = '';
+    document.getElementById('itemname').value = 'Choose...';
+    document.getElementById('quantity').value = '';
+    document.getElementById('unit').value = '...';
+    document.getElementById('price').value = '';
+  }
+
+  document.querySelector('.form2').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    uploadData(); // Call function to upload data to Firebase
+  });
+
+
+
+
+
+
+
+
+    // ==========================================
+
+
+
+
+
+
+
+      
+
+      function collectMealData(containerId) {
+        var container = document.getElementById(containerId);
+        var mealData = [];
+
+        var mealInputs = container.querySelectorAll(".meal");
+        mealInputs.forEach(function (input, index) {
+          var value = (index !== 0 ? "\n" : "") + input.value + " ";
+          mealData.push(value);
+        });
+
+        return mealData.join("");
+      }
+
+      function searchByDate() {
+        var searchDate = document.getElementById("searchDate").value;
+        var dateParts = searchDate.split("-");
+        if (dateParts.length === 3) {
+            var searchDateFormatted = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+            console.log(searchDateFormatted);
+            retrieveAndDisplayData(searchDateFormatted);
+        } else {
+            // Handle invalid date format
+            alert("Please enter a date in the format DD-MM-YYYY.");
+        }
+      }
+
+      function retrieveAndDisplayData(searchDate = null) {
+        var database = firebase.database();
+        var hostelName = getParameterByName("hostelName");
+
+        var allHostels = document.querySelector(".allhostels");
+        if (!allHostels) {
+          console.error("Element with class 'allhostels' not found.");
+          return;
+        }
+
+        if (hostelName) {
+          var foodDataRef = database.ref("hostels/" + hostelName + "/fooddata");
+
+          if (searchDate) {
+
+            foodDataRef
+              .orderByKey()
+              .equalTo(searchDate)
+              .once("value", function (snapshot) {
+                clearData();
+                snapshot.forEach(function (childSnapshot) {
+                  var data = childSnapshot.val();
+                  displayData(data,searchDate);
+                });
+              });
+          } else 
+          {
+
+        
+
+
+            foodDataRef.on("value", function (snapshot) {
+                clearData();
+                snapshot.forEach(function (dateSnapshot) {
+                    var date = dateSnapshot.key;
+                    var data = dateSnapshot.val();
+                    displayData(data, date);
+                });
+            });
+
+            
+            
+          }
+        }
+      }
+
+      function displayData(data,date) {
+       
+        var breakfast = data.breakfastInputs;
+        var lunch = data.LunchInputs;
+        var snacks = data.SnacksInputs;
+        var dinner = data.DinnerInputs;
+      
+
+        var hostelCard = document.createElement("div");
+        hostelCard.classList.add("card");
+        hostelCard.classList.add("m-4");
+        hostelCard.innerHTML = `
+          <div class="p-4">
+            <h5 class="card-title mb-4" style="color:blue">${date}</h5>
+            <style>
+              .table th {
+                width: 25%;
+                word-wrap: break-word;
+              
+            }
+            .table td {
+              max-width: 150px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              word-wrap: break-word;
+            }
+
+
+            </style>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Breakfast</th>
+                  <th scope="col">Lunch</th>
+                  <th scope="col">Snacks</th>
+                  <th scope="col">Dinner</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>${breakfast}</td>
+                  <td>${lunch}</td>
+                  <td>${snacks}</td>
+                  <td>${dinner}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+        var allHostels =  document.querySelector(".allhostels");
+        allHostels.insertBefore(hostelCard, allHostels.firstChild);
+      }
+
+    
+      function clearData() {
+        var cards = document.querySelectorAll(".card");
+        cards.forEach(function (card) {
+          card.remove();
+        });
+      }
+
+      retrieveAndDisplayData();
+    </script>
+  </body>
+</html>

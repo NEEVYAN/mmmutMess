@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/bs-brain@2.0.3/components/logins/login-10/assets/css/login-10.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@500&family=Vollkorn:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+  <script src="https://kit.fontawesome.com/a198e75b8b.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Poppins:wght@200;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <script
+    src="https://kit.fontawesome.com/a198e75b8b.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="p-3 container">
+        <a class="navbar-brand" href="#">
+          <img src="images/logommmut.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          Welcome, Admin
+        </a>
+        </div>
+      </nav>
+
+      <div class="p-3 container">
+        <a class="navbar-brand" href="#">
+          <h1>All Hostels List</h1>
+        </a>
+      </div>
+  
+      <div class="allhostels container mb-5"></div>
+      
+
+
+    
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+<script src="../fireConfig.js"></script>
+
+<script>
+  firebase
+    .database()
+    .ref("hostels")
+    .once("value")
+    .then(function (snapshot) {
+      var allHostels = document.querySelector(".allhostels");
+      if (!allHostels) {
+        console.error("Element with class 'allhostels' not found.");
+        return;
+      }
+
+      var hostels = snapshot.val();
+      if (!hostels) {
+        console.error("No hostels found in the database.");
+        return;
+      }
+
+    var hostelKeys = Object.keys(hostels);
+    hostelKeys.forEach(function(hostelName) {
+
+
+
+    var hostelData = hostels[hostelName];
+    var wardenName = hostelData.wardenName;
+    var wardenPhone = hostelData.wardenPhone;
+    var messManager = hostelData.messManager;
+    var hostelPassword = hostelData.hostelPassword;
+
+    // Create HTML card for each hostel
+    var hostelCard = document.createElement("div");
+    hostelCard.classList.add("card");
+    hostelCard.classList.add("col-md-4");
+    hostelCard.style.width = "20rem";
+    hostelCard.innerHTML = `
+      <div class="card text-center p-3" style="background-color:#ffffff ">
+          <div class="card-body">
+              <h5 class="card-title mb-4">${hostelName}</h5>
+              <a href="#" class="btn btn-primary login-btn" data-hostelname="${hostelName}" data-password="${hostelPassword}">Login</a>
+          </div>
+      </div>
+    `;
+
+    // Add event listener to the login button
+    var loginButton = hostelCard.querySelector('.login-btn');
+    loginButton.addEventListener('click', function(event) {
+      event.preventDefault();
+        window.open('hostelDaily.html?hostelName=' + encodeURIComponent(hostelName), '_blank');
+    });
+
+    allHostels.appendChild(hostelCard);
+  });
+
+
+
+
+    })
+
+    .catch(function(error) {
+  console.error("Error fetching hostels from Firebase:", error);
+});
+
+</script>
+
+
+
+
+
+
+</html>
